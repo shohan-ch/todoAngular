@@ -67,9 +67,6 @@
           </div>
         </div>
 
-        <p>
-          {{ formData.status }}
-        </p>
         <button
           nz-button
           nzType="primary"
@@ -105,7 +102,7 @@
         <td>{{ data.description }}</td>
         <td>{{ data.status }}</td>
         <td>
-          <a (click)="handleModal(1)">Update</a>
+          <a (click)="handleModal(data.id)">Update</a>
           <nz-divider nzType="vertical"></nz-divider>
           <a>Delete</a>
         </td>

@@ -36,4 +36,8 @@ export class TodoService {
     this.todos.push(data);
     return of(this.todos);
   }
+  editTodo(id: number) {
+    return of(this.todos.find((todo: any) => todo.id == id));
+  }
+  updateTodo(data: any, id: number) {}
 }

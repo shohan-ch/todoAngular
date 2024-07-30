@@ -53,7 +53,15 @@ export class TodoComponent implements OnInit {
   handleModal(id: number | null = null) {
     this.isVisible = !this.isVisible;
     if (id) {
-      alert(id);
+      this.todoService.editTodo(id).subscribe((val: any) => {
+        this.formData = this.formBuilder.group({
+          name: [val?.name],
+          description: [val?.description],
+          status: [val?.status],
+        });
+      });
+
+      this.formData.value.name = 'ssas';
     }
   }
 
