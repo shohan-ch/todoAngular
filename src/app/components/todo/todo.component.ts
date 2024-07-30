@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { StatusDirective } from '../../directives/status.directive';
 
 @Component({
   selector: 'app-todo',
@@ -28,6 +29,7 @@ import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
     ReactiveFormsModule,
     NzAlertModule,
     NzMessageModule,
+    StatusDirective,
   ],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css',

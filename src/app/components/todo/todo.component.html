@@ -107,7 +107,11 @@
       <tr *ngFor="let data of todos">
         <td>{{ data.name }}</td>
         <td>{{ data.description }}</td>
-        <td>{{ data.status }}</td>
+        <td [appStatus]="data.status" style="font-weight: bold">
+          <span>
+            {{ data.status.charAt(0).toUpperCase() + data.status.slice(1) }}
+          </span>
+        </td>
         <td>
           <a (click)="handleModal(data.id)">Update</a>
           <nz-divider nzType="vertical"></nz-divider>
