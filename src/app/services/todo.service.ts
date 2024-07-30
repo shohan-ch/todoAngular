@@ -37,7 +37,21 @@ export class TodoService {
     return of(this.todos);
   }
   editTodo(id: number) {
-    return of(this.todos.find((todo: any) => todo.id == id));
+    return of(this.todos.find((todo) => todo.id == id));
   }
-  updateTodo(data: any, id: number) {}
+  updateTodo(findId: any, data: any) {
+    let updateTodo = this.todos.map((todo: ITodo) => {
+      if (todo.id === findId) {
+        return { ...todo, ...data };
+      } else {
+        return todo;
+      }
+    });
+
+    return of(updateTodo);
+  }
+
+  deleteTodo(id: number) {
+    return of(this.todos.filter((todo) => todo.id != id));
+  }
 }

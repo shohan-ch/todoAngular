@@ -1,15 +1,21 @@
 <main>
   <h3>Todo Lists</h3>
 
+  <!-- Alert -->
+
+  <!-- Modal -->
   <nz-modal
     [(nzVisible)]="isVisible"
-    nzTitle="The first Modal"
+    [nzTitle]="isUpdate ? 'Update Todo' : 'Add New Todo'"
     (nzOnCancel)="handleModal()"
     nzOkText="Ok"
     nzCancelText="Cancel"
   >
     <ng-container *nzModalContent>
-      <form [formGroup]="formData" (ngSubmit)="handleSubmit()">
+      <form
+        [formGroup]="formData"
+        (ngSubmit)="!isUpdate ? handleSubmit() : handleUpdate()"
+      >
         <div class="formGroup">
           <label for="name">Name</label>
           <input
@@ -73,7 +79,7 @@
           style="margin-top: 20px"
           type="submit"
         >
-          Submit
+          {{ isUpdate ? "Update" : "Save" }}
         </button>
       </form>
     </ng-container>
@@ -87,6 +93,7 @@
     Add todo
   </button>
 
+  <!-- Table -->
   <nz-table #basicTable [nzData]="todos">
     <thead>
       <tr>
@@ -104,7 +111,7 @@
         <td>
           <a (click)="handleModal(data.id)">Update</a>
           <nz-divider nzType="vertical"></nz-divider>
-          <a>Delete</a>
+          <a (click)="handleDelete(data.id)">Delete</a>
         </td>
       </tr>
     </tbody>
