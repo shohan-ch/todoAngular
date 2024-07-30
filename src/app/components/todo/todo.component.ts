@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NzButtonComponent, NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { ITodo } from '../../services/todo.service';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-todo',
@@ -14,12 +16,14 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     CommonModule,
     NzButtonComponent,
     NzButtonModule,
+    NzModalModule,
   ],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css',
 })
 export class TodoComponent {
-  todos = [
+  isVisible = false;
+  todos: ITodo[] = [
     {
       name: 'Eat',
       description: 'Need to eat for living',
@@ -31,4 +35,8 @@ export class TodoComponent {
       status: 'pending',
     },
   ];
+
+  handleModal() {
+    this.isVisible = !this.isVisible;
+  }
 }

@@ -1,7 +1,24 @@
 <main>
   <h3>Todo Lists</h3>
 
-  <button nz-button nzType="primary" style="margin-bottom: 15px">
+  <nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="The first Modal"
+    (nzOnCancel)="handleModal()"
+    (nzOkDisabled)="(false)"
+  >
+    <ng-container *nzModalContent>
+      <p>Content one</p>
+      <p>Content two</p>
+      <p>Content three</p>
+    </ng-container>
+  </nz-modal>
+  <button
+    nz-button
+    nzType="primary"
+    style="margin-bottom: 15px"
+    (click)="handleModal()"
+  >
     Add todo
   </button>
 
