@@ -1,0 +1,29 @@
+.text-error{
+    color: red;
+    margin-top: 4px;
+    transition: all;
+    transition-duration: 3;
+}
+.inputField{
+    display: block;
+    width: 100%;
+    border:1px solid #40a9ff;
+    margin-top: 6px;
+}
+
+select{
+    display: block;
+    width: 100%;
+    border: 1px solid #40a9ff;
+    margin-top: 6px;
+    height: 30px;
+}
+
+label{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.formGroup{
+    margin:  10px 0px;
+}

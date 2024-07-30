@@ -5,12 +5,80 @@
     [(nzVisible)]="isVisible"
     nzTitle="The first Modal"
     (nzOnCancel)="handleModal()"
-    (nzOkDisabled)="(false)"
+    nzOkText="Ok"
+    nzCancelText="Cancel"
   >
     <ng-container *nzModalContent>
-      <p>Content one</p>
-      <p>Content two</p>
-      <p>Content three</p>
+      <form [formGroup]="formData" (ngSubmit)="handleSubmit()">
+        <div class="formGroup">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="inputField"
+          />
+
+          <div
+            *ngIf="
+              (formData.dirty || isSubmitted) &&
+              formData.get('name')?.hasError('required')
+            "
+            class="text-error"
+          >
+            Name is Required
+          </div>
+        </div>
+        <div class="formGroup">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            formControlName="description"
+            class="inputField"
+          />
+
+          <div
+            *ngIf="
+              (formData.dirty || isSubmitted) &&
+              formData.get('description')?.hasError('required')
+            "
+            class="text-error"
+          >
+            Description is Required
+          </div>
+        </div>
+        <div class="formGroup">
+          <label for="status">Status</label>
+          <select formControlName="status" id="status" class="inputField">
+            <option value="">Select</option>
+            <option value="pending">Pending</option>
+            <option value="active">Active</option>
+          </select>
+
+          <div
+            *ngIf="
+              (formData.dirty || isSubmitted) &&
+              formData.get('status')?.hasError('required')
+            "
+            class="text-error"
+          >
+            Status is Required
+          </div>
+        </div>
+
+        <p>
+          {{ formData.status }}
+        </p>
+        <button
+          nz-button
+          nzType="primary"
+          style="margin-top: 20px"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
     </ng-container>
   </nz-modal>
   <button
@@ -37,7 +105,7 @@
         <td>{{ data.description }}</td>
         <td>{{ data.status }}</td>
         <td>
-          <a>Update</a>
+          <a (click)="handleModal(1)">Update</a>
           <nz-divider nzType="vertical"></nz-divider>
           <a>Delete</a>
         </td>
