@@ -1,0 +1,47 @@
+.ng-invalid:not(form) {
+    border: 2px solid #a94442;
+    /* red */
+}
+.ng-untouched:not(form) {
+    border: 1px solid #40a9ff;
+    /* red */
+}
+main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+}
+.loginForm{
+
+    width: 420px;
+    padding: 55px 30px;
+    background-color: white;    
+}
+
+.text-error {
+    color: red;
+    margin-top: 4px;
+    transition: all;
+    transition-duration: 3;
+}
+
+.inputField {
+    display: block;
+    width: 100%;
+    border: 1px solid #40a9ff;
+    margin-top: 6px;
+}
+
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: block;
+
+}
+
+.formGroup {
+    margin: 15px 0px;
+}
