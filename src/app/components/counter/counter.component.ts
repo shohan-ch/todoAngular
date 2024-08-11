@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
+import { decrement, increment, reset } from './store/counter.action';
 @Component({
   selector: 'app-counter',
   standalone: true,
@@ -9,7 +11,16 @@ import { of } from 'rxjs';
   styleUrl: './counter.component.css',
 })
 export class CounterComponent {
-  // counter$;
-  counter$ = of(10);
-  // counter$ = 10;
+  store = inject(Store);
+  counter$ = this.store.select('count');
+
+  increment() {
+    this.store.dispatch(increment());
+  }
+  decrement() {
+    this.store.dispatch(decrement());
+  }
+  reset() {
+    this.store.dispatch(reset());
+  }
 }
