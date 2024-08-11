@@ -1,5 +1,5 @@
 import { CommonModule, JsonPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NzButtonComponent, NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -14,6 +14,7 @@ import {
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { StatusDirective } from '../../directives/status.directive';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-todo',
@@ -40,6 +41,8 @@ export class TodoComponent implements OnInit {
     private todoService: TodoService,
     private antMessage: NzMessageService
   ) {}
+
+  counter$ = inject(Store).select('count');
   isVisible = false;
   isSubmitted = false;
   isUpdate = false;
