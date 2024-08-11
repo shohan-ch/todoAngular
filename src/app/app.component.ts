@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnChanges, SimpleChanges } from '@angular/core';
 import {
   Router,
@@ -5,19 +6,22 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { logoutAction } from './store/auth/auth.actions';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnChanges {
   title = 'todo';
   router = inject(Router);
+  store = inject(Store);
+  auth$ = this.store.select('auth');
 
-  isLogin = localStorage.getItem('user') && true;
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isLogin'] && changes['isLogin'].currentValue) {
       console.log(changes['isLogin'].currentValue);
@@ -28,6 +32,6 @@ export class AppComponent implements OnChanges {
   handleLogout() {
     localStorage.removeItem('user');
     this.router.navigate(['login']);
-    this.isLogin = false;
+    this.store.dispatch(logoutAction());
   }
 }

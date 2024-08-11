@@ -3,8 +3,8 @@
     <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
     <a routerLink="/todos" routerLinkActive="active">Todos</a>
     <a routerLink="/counter" routerLinkActive="active">Counter</a>
-
-    @if (isLogin) {
+    <!-- {{ (auth$ | async) ==false }} -->
+    @if ((auth$ | async) == true ) {
     <button (click)="handleLogout()" type="button" style="color: black">
       Logout
     </button>

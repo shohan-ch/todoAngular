@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
+import { loginAction } from '../store/auth/auth.actions';
 
 export interface ILogin {
   userName: string;
@@ -11,6 +13,7 @@ export interface ILogin {
 })
 export class AuthService {
   constructor() {}
+  store = inject(Store);
   authUser: ILogin = {
     userName: 'admin',
     password: '12345',
@@ -23,6 +26,7 @@ export class AuthService {
       data.password == this.authUser.password
     ) {
       localStorage.setItem('user', data.userName);
+      this.store.dispatch(loginAction());
       return true;
     }
     return false;

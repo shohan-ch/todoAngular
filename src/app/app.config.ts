@@ -9,12 +9,13 @@ import { routes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { counterReducer } from './components/counter/store/counter.reducer';
+import { authReducer } from './store/auth/auth.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     importProvidersFrom([BrowserAnimationsModule]),
     provideRouter(routes),
-    provideStore({ count: counterReducer }),
+    provideStore({ count: counterReducer, auth: authReducer }),
   ],
 };
